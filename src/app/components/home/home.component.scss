@@ -1,0 +1,15 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+  }
+
+  .button {
+    font-size: 1rem;
+  
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
+  }  
+  
