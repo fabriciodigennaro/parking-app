@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,22 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isMenuOpen = false;
 
-  toggleMenu() {
+  constructor(private _router: Router){}
+
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.isMenuOpen = false;
   }
 
-  getMenuToggleClass() {
+  getMenuToggleClass(): string {
     return this.isMenuOpen ? 'close' : '';
   }
 
+  redirectHome(): void {
+    this.closeMenu();
+    this._router.navigate(['/'])
+  }
 }

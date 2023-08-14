@@ -1,0 +1,79 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 30px;
+    width: 70%; 
+    margin: 20px auto;
+
+    .step-form {
+        display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    }
+  
+    .form-field {
+      margin-bottom: 20px;
+  
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+  
+      input[type='text'],
+      select,
+      input[type='time'] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+  
+      select {
+        height: 40px;
+      }
+  
+      input[type='time'] {
+        height: 40px;
+      }
+  
+    }
+}
+
+.title-step {
+    border-radius: 0 0 5px 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary);
+    width: 50%;
+    padding: 5px;
+    font-weight: 600;
+    color: var(--white);
+    border-top: 1px solid var(--grey);
+}
+
+  @media (max-width: 768px) {
+   .card {
+    width: 80%;
+
+    .form-field{
+
+    
+
+    select {
+        height: 50px;
+      }
+  
+      input[type='time'] {
+        height: 50px;
+      } 
+    }
+   }
+  }
+  

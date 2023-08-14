@@ -1,0 +1,33 @@
+<p class="title-step">Start parking</p>
+<div class="card">
+    <p class="step-form">Step 1/2</p>
+    <form formGroup="form" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label for="plate">Plate:</label>
+        <input type="text" id="plate" formControlName="plate" />
+      </div>
+  
+      <div class="form-field">
+        <label for="city">City:</label>
+        <select id="city" formControlName="city">
+          <option value="city1">City 1</option>
+          <option value="city2">City 2</option>
+        </select>
+      </div>
+  
+      <div class="form-field">
+        <label for="parkZone">Park Zone:</label>
+        <select id="parkZone" formControlName="parkZone">
+          <option value="zone1">Zone 1</option>
+          <option value="zone2">Zone 2</option>
+        </select>
+      </div>
+  
+      <div class="form-field">
+        <label for="duration">Duration:</label>
+        <input type="time" id="duration" formControlName="duration" />
+      </div>
+      <app-button class="confirm-btn">Confirm</app-button>
+    </form>
+  </div>
+  
