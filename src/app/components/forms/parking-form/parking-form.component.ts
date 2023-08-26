@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CitiesService } from 'src/app/services/cities.service';
+import { City } from 'src/app/share/interfaces/city.inteface';
 
 @Component({
   selector: 'app-parking-form',
@@ -8,8 +10,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ParkingFormComponent {
   form: FormGroup;
+  cities: City[] = [];
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder,
+              private _citiesService: CitiesService,
+              ) {
     this.form = this._fb.group({
       plate: ['', Validators.required],
       city: ['', Validators.required],
@@ -18,11 +23,19 @@ export class ParkingFormComponent {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCities();
+  }
+
+  getCities(): void {
+    this._citiesService.getCities().subscribe((response) => {
+      this.cities = response.cities;
+    });
+  }
 
   onSubmit() {
     if (this.form.valid) {
     
     }
-}
+  }
 }
