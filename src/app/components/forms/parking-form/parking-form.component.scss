@@ -1,79 +1,89 @@
+input {
+  box-sizing: border-box;
+}
 .card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 30px;
-    width: 70%; 
-    margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 30px;
+  width: 70%; 
+  margin: 20px auto;
 
-    .step-form {
-        display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    font-weight: 600;
-    }
-  
-    .form-field {
+  .step-form {
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
       margin-bottom: 20px;
-  
+      font-weight: 600;
+  }
+
+  .form-field {
+      margin-bottom: 20px;
+
       label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
       }
-  
+
       input[type='text'],
-      select,
-      input[type='time'] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-top: 5px;
-      }
-  
       select {
-        height: 40px;
+          width: 100%;
+          height: 40px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          margin-top: 5px;
       }
-  
+
       input[type='time'] {
-        height: 40px;
+          width: 100%;
+          height: 40px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          margin-top: 5px;
+          /* Estilos para dispositivos móviles */
+          @media (max-width: 768px) {
+              -webkit-appearance: none;
+              appearance: none;
+              background: transparent;
+              position: relative;
+              cursor: pointer;
+              &::-webkit-calendar-picker-indicator {
+                  position: absolute;
+                  right: 0;
+                  top: 0;
+                  bottom: 0;
+                  left: 0;
+                  width: auto;
+                  height: auto;
+                  color: transparent;
+                  background: transparent;
+                  cursor: pointer;
+              }
+          }
       }
-  
-    }
+  }
 }
 
 .title-step {
-    border-radius: 0 0 5px 5px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    background-color: var(--primary);
-    width: 50%;
-    padding: 5px;
-    font-weight: 600;
-    color: var(--white);
-    border-top: 1px solid var(--grey);
+  border-radius: 0 0 5px 5px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary);
+  width: 50%;
+  padding: 5px;
+  font-weight: 600;
+  color: var(--white);
+  border-top: 1px solid var(--grey);
 }
 
-  @media (max-width: 768px) {
-   .card {
-    width: 80%;
-
-    .form-field{
-
-    
-
-    select {
-        height: 50px;
-      }
-  
-      input[type='time'] {
-        height: 50px;
-      } 
-    }
-   }
+@media (max-width: 768px) {
+ .card {
+      width: 80%;
   }
-  
+}
