@@ -13,7 +13,7 @@
         <label for="city">*City:
           <p class="error-text" *ngIf="isInvalidField('city')"> is required.</p>
         </label>
-        <select id="city" formControlName="city" [ngClass]="{error: isInvalidField('city')}">
+        <select id="city" formControlName="city" [ngClass]="{error: isInvalidField('city')}" (change)="onCitySelected()">
           <option value="">Select a city</option>
           <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
         </select>
@@ -24,9 +24,8 @@
           <p class="error-text" *ngIf="isInvalidField('parkZone')"> is required.</p>
         </label>
         <select id="parkZone" formControlName="parkZone" [ngClass]="{error: isInvalidField('parkZone')}">
-          <option value="">Select a park zone</option>
-          <option value="zone1">Zone 1</option>
-          <option value="zone2">Zone 2</option>
+          <option value="">{{ placeholderParkingZones }}</option>
+          <option *ngFor="let zone of parkingZones" value="{{zone.name}}">{{zone.name}}</option>
         </select>
       </div>
   
