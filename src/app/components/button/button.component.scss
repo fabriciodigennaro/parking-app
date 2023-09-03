@@ -17,6 +17,13 @@
     color: var(--primary-dark);
   }
 
+  &:disabled {
+    background-color: var(--grey);
+    border: 2px solid var(--grey-dark);
+    color: var(--white);
+    cursor: not-allowed;
+  }
+
   @media (max-width: 768px) {
     font-size: 2rem;
     width: 80vw;

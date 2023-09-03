@@ -16,7 +16,7 @@ export class ParkingFormComponent {
               private _citiesService: CitiesService,
               ) {
     this.form = this._fb.group({
-      plate: ['', Validators.required],
+      plate: ['', [Validators.required]],
       city: ['', Validators.required],
       parkZone: ['', Validators.required],
       duration: ['', Validators.required]
@@ -33,9 +33,16 @@ export class ParkingFormComponent {
     });
   }
 
+  isInvalidField(fieldName: string): boolean {
+    if(this.form.get(fieldName)) {
+      return this.form.get(fieldName)!.invalid && this.form.get(fieldName)!.touched
+    }
+    return false
+  }
   onSubmit() {
     if (this.form.valid) {
     
     }
   }
+
 }

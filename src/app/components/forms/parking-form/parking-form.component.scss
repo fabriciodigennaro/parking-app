@@ -1,6 +1,14 @@
 input {
   box-sizing: border-box;
-}
+
+  &:focus {
+    outline-width: 0;
+    outline: none;
+  }
+
+  
+
+  }
 .card {
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -20,10 +28,21 @@ input {
   .form-field {
       margin-bottom: 20px;
 
+      .error {
+        border: 1px solid var(--error) !important;
+    }
+
       label {
           display: block;
           margin-bottom: 10px;
           font-weight: bold;
+
+          .error-text {
+            display: inline;
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--error);
+          }
       }
 
       input[type='text'],

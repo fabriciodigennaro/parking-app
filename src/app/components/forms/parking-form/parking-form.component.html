@@ -1,32 +1,42 @@
 <p class="title-step">Start parking</p>
 <div class="card">
     <p class="step-form">Step 1/2</p>
-    <form formGroup="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <label for="plate">Plate:</label>
-        <input type="text" id="plate" formControlName="plate" />
+        <label for="plate">*Plate:  
+          <p class="error-text" *ngIf="isInvalidField('plate')"> is required.</p>
+        </label>
+        <input type="text" id="plate" formControlName="plate" [ngClass]="{error: isInvalidField('plate')}"/>
       </div>
   
       <div class="form-field">
-        <label for="city">City:</label>
-        <select id="city" formControlName="city">
+        <label for="city">*City:
+          <p class="error-text" *ngIf="isInvalidField('city')"> is required.</p>
+        </label>
+        <select id="city" formControlName="city" [ngClass]="{error: isInvalidField('city')}">
+          <option value="">Select a city</option>
           <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
         </select>
       </div>
   
       <div class="form-field">
-        <label for="parkZone">Park Zone:</label>
-        <select id="parkZone" formControlName="parkZone">
+        <label for="parkZone">*Park Zone:
+          <p class="error-text" *ngIf="isInvalidField('parkZone')"> is required.</p>
+        </label>
+        <select id="parkZone" formControlName="parkZone" [ngClass]="{error: isInvalidField('parkZone')}">
+          <option value="">Select a park zone</option>
           <option value="zone1">Zone 1</option>
           <option value="zone2">Zone 2</option>
         </select>
       </div>
   
       <div class="form-field">
-        <label for="duration">Duration:</label>
-        <input type="time" id="duration" formControlName="duration" />
+        <label for="duration">*Duration:
+          <p class="error-text" *ngIf="isInvalidField('duration')"> is required.</p>
+        </label>
+        <input type="time" id="duration" formControlName="duration" [ngClass]="{error: isInvalidField('duration')}"/>
       </div>
-      <app-button class="confirm-btn">Confirm</app-button>
+      <app-button [disabled]="!form.valid" class="confirm-btn">Confirm</app-button>
     </form>
   </div>
   
