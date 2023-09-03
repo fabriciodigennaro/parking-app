@@ -3,7 +3,10 @@
     justify-content: center;
     align-items: center;
     height: 92vh;
-  }
+    background: url('../../../assets/parking-bg1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
   .button {
     font-size: 1rem;
