@@ -27,4 +27,14 @@ export class HeaderComponent {
     this.closeMenu();
     this._router.navigate(['/'])
   }
+
+  openParkForm(): void {
+    this.closeMenu();
+    this._router.navigate(['/parking-form'])
+  }
+
+  redirectHelp(): void {
+    this.closeMenu();
+    this._router.navigate(['/help'])
+  }
 }

@@ -9,8 +9,8 @@
   <nav class="nav-items" [ngClass]="{ 'show-menu': isMenuOpen }">
     <ul>
       <li><a (click)="redirectHome()">Home</a></li>
-      <li><a routerLink="/parking-form">Park</a></li>
-      <li><a routerLink="/help">Help</a></li>
+      <li><a (click)="openParkForm()">Park</a></li>
+      <li><a (click)="redirectHelp()">Help</a></li>
     </ul>
   </nav>
 </header>
