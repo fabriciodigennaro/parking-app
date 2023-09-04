@@ -3,14 +3,14 @@
     <p class="step-form">Step 1/2</p>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <label for="plate">*Plate:  
+        <label for="plate">Plate:  
           <p class="error-text" *ngIf="isInvalidField('plate')"> is required.</p>
         </label>
         <input type="text" id="plate" formControlName="plate" [ngClass]="{error: isInvalidField('plate')}"/>
       </div>
   
       <div class="form-field">
-        <label for="city">*City:
+        <label for="city">City:
           <p class="error-text" *ngIf="isInvalidField('city')"> is required.</p>
         </label>
         <select id="city" formControlName="city" [ngClass]="{error: isInvalidField('city')}" (change)="onCitySelected()">
@@ -20,7 +20,7 @@
       </div>
   
       <div class="form-field">
-        <label for="parkZone">*Park Zone:
+        <label for="parkZone">Park Zone:
           <p class="error-text" *ngIf="isInvalidField('parkZone')"> is required.</p>
         </label>
         <select id="parkZone" formControlName="parkZone" [ngClass]="{error: isInvalidField('parkZone')}">
@@ -30,7 +30,7 @@
       </div>
   
       <div class="form-field">
-        <label for="duration">*Duration:
+        <label for="duration">Duration:
           <p class="error-text" *ngIf="isInvalidField('duration')"> is required.</p>
         </label>
         <input type="time" id="duration" formControlName="duration" [ngClass]="{error: isInvalidField('duration')}"/>

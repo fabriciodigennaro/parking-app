@@ -10,6 +10,6 @@ import { HttpService } from "./http.service";
     constructor(private _httpService: HttpService) {}
 
     getCities(): Observable<CitiesResponse> {
-        return this._httpService.get('cities')
+        return this._httpService.get('cities');
   }
 }

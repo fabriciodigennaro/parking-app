@@ -40,7 +40,7 @@ export class ParkingFormComponent implements OnInit {
   }
 
   onCitySelected() {
-    if(this.form.get('city')?.dirty) {
+    if(this.form.get('city')?.dirty && this.form.get('city')?.value != '') {
       this.placeholderParkingZones = 'Select a Parking Zone';
       this.form.get('parkZone')?.enable();
       this.getParkingZonesByCityId(1)
@@ -48,7 +48,10 @@ export class ParkingFormComponent implements OnInit {
   }
 
   getParkingZonesByCityId(cityId: number): void {
-    this._parkingZonesService.getZonesByCityId(cityId);
+    this._parkingZonesService.getZonesByCityId(cityId)
+      .subscribe((response) => {
+        this.parkingZones = response.parking_zones;
+      });
   }
 
   isInvalidField(fieldName: string): boolean {

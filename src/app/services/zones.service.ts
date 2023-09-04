@@ -12,7 +12,6 @@ import { HttpParams } from "@angular/common/http";
     constructor(private _httpService: HttpService) {}
 
     getZonesByCityId(cityId: number): Observable<ParkingZonesResponse> {
-        const params = new HttpParams().set('city_id', cityId);
-        return this._httpService.post('parking-zones', params)
+        return this._httpService.get(`parking-zones?city-id=${cityId}`);
   }
 }
