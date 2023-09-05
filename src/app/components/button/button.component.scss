@@ -7,9 +7,10 @@
   font-weight: 600;
   background-color: var(--primary);
   transition: background-color 0.3s, color 0.3s;
-  width: 70vw;
+  width: 100%;
   height: 8vh;
   border: none;
+  margin-top: 30px;
 
   &:hover {
     background-color: var(--secondary);
@@ -17,14 +18,11 @@
 
   &:disabled {
     background-color: var(--grey);
-    border: 2px solid var(--grey-dark);
     color: var(--white);
     cursor: not-allowed;
   }
 
   @media (max-width: 768px) {
-    font-size: 2rem;
-    width: 80vw;
-    height: 10vh;
+    font-size: 1.7rem;
   }
 }
