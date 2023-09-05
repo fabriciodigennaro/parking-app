@@ -21,6 +21,7 @@ export class ParkingFormComponent implements OnInit {
               private _parkingZonesService: ParkingZonesService,
               ) {
     this.form = this._fb.group({
+      email: ['', Validators.required],
       plate: ['', Validators.required],
       city: ['', Validators.required],
       parkZone: ['', Validators.required],

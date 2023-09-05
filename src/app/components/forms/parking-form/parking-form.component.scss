@@ -10,20 +10,53 @@ input {
 
   }
 .card {
-  border: 1px solid #ccc;
+  border: 1px solid var(--grey-light);
   border-radius: 10px;
   padding: 30px;
-  width: 70%; 
+  width: 50%; 
   margin: 20px auto;
 
-  .step-form {
-      display: flex;
-      margin: 0 auto;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      font-weight: 600;
+  // start step indicator styles
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    margin: 20px auto;
+
+    img {
+      width: 20px;
+      padding-top: 5px;
   }
+  }
+  
+  .step {
+    display: flex;
+    align-items: center;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--grey-light);
+    margin: 0;
+  }
+  
+  .line {
+    width: 20vw;
+    height: 3px;
+    background-color: var(--grey-light);
+  }
+  
+  .active {
+    background-color: var(--secondary);
+  }
+  // end step indicator styles
 
   .form-field {
       margin-bottom: 20px;
@@ -46,47 +79,36 @@ input {
       }
 
       input[type='text'],
+      input[type='email'],
       select {
           width: 100%;
           height: 40px;
           padding: 10px;
-          border: 1px solid #ccc;
+          border: 1px solid var(--grey-light);
           border-radius: 5px;
           font-size: 16px;
           margin-top: 5px;
       }
 
-      input[type='time'] {
-          width: 100%;
-          height: 40px;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          font-size: 16px;
-          margin-top: 5px;
-          /* Estilos para dispositivos móviles */
-          @media (max-width: 768px) {
-              -webkit-appearance: none;
-              appearance: none;
-              background: transparent;
-              position: relative;
-              cursor: pointer;
-              &::-webkit-calendar-picker-indicator {
-                  position: absolute;
-                  right: 0;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  width: auto;
-                  height: auto;
-                  color: transparent;
-                  background: transparent;
-                  cursor: pointer;
-              }
+      input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--primary);
+        height: 5px;
+        border-radius: 5px;
+        width: 100%;
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+        
+          background: var(--primary-light);
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+        }
           }
       }
   }
-}
 
 .title-step {
   border-radius: 0 0 5px 5px;
