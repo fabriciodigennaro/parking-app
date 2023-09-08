@@ -33,8 +33,6 @@ export class ParkingFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(": TIME", new Date().getTime());
-    
     this.form.get('parkZone')?.disable();
     this.getCities();
     this.subscribeToDurationChanges();
