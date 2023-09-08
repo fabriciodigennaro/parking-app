@@ -47,7 +47,8 @@
         <label for="duration">Duration:
           <p class="error-text" *ngIf="isInvalidField('duration')"> is required.</p>
         </label>
-        <input type="range" id="duration" formControlName="duration" [ngClass]="{error: isInvalidField('duration')}"/>
+        <input type="range" min="10" max="480" id="duration" formControlName="duration" [ngClass]="{error: isInvalidField('duration')}"/>
+         <h2>Exipres at: {{finishingTime}}</h2>
       </div>
       <app-button [disabled]="!form.valid" class="confirm-btn">Confirm</app-button>
     </form>
