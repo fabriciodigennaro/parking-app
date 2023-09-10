@@ -4,6 +4,7 @@
   background-color: var(--primary);
   color: var(--white);
   min-height: 8vh;
+  position: relative
 }
 
 .logo {
@@ -68,6 +69,7 @@
 
   .nav-items {
     display: none;
+    position: relative
   }
 
   .show-menu {
@@ -76,7 +78,7 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    background-color: var(--green-dark);
+    background-color: var(--white);
     padding: 10px;
     border-radius: 0 0 0 5px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
