@@ -127,17 +127,12 @@ input {
   }
 }
 
-.title-step {
-  border-radius: 0 0 5px 5px;
-  margin: 0 auto;
+.parking-form-title {
   display: flex;
   justify-content: center;
-  background-color: var(--primary);
-  width: 50%;
-  padding: 5px;
-  font-weight: 600;
-  color: var(--white);
-  border-top: 1px solid var(--grey);
+  font-family: "Lobster", cursive;
+  font-weight: normal;
+  color: var(--secondary);
 }
 
 @media (max-width: 768px) {

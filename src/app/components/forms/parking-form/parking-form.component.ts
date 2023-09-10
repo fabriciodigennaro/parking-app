@@ -29,13 +29,13 @@ export class ParkingFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       plate: ['', Validators.required],
       city: ['', Validators.required],
-      parkZone: ['', Validators.required],
+      parkingZone: ['', Validators.required],
       duration: [10, Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.form.get('parkZone')?.disable();
+    this.form.get('parkingZone')?.disable();
     this.getCities();
     this.subscribeToDurationChanges();
   }
@@ -50,7 +50,7 @@ export class ParkingFormComponent implements OnInit {
     const cityId = this.form.get('city')?.value;
     if (cityId != '') {
       this.placeholderParkingZones = 'Select a Parking Zone';
-      this.form.get('parkZone')?.enable();
+      this.form.get('parkingZone')?.enable();
       this.getParkingZonesByCityId(cityId);
     }
   }

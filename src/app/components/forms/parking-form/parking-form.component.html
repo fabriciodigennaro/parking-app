@@ -1,5 +1,7 @@
-<p class="title-step">Start parking</p>
 <div class="card">
+  <div>
+    <h1 class="parking-form-title">Start your parking!</h1>
+  </div> 
   <div class="step-indicator">
     <div class="step">
       <div class="circle active">
@@ -59,16 +61,16 @@
     </div>
 
     <div class="form-field">
-      <label for="parkZone"
-        >Park Zone:
-        <p class="error-text" *ngIf="isInvalidField('parkZone')">
+      <label for="parkingZone"
+        >Parking Zone:
+        <p class="error-text" *ngIf="isInvalidField('parkingZone')">
           is required.
         </p>
       </label>
       <select
-        id="parkZone"
-        formControlName="parkZone"
-        [ngClass]="{ error: isInvalidField('parkZone') }"
+        id="parkingZone"
+        formControlName="parkingZone"
+        [ngClass]="{ error: isInvalidField('parkingZone') }"
       >
         <option value="">{{ placeholderParkingZones }}</option>
         <option *ngFor="let zone of parkingZones" value="{{ zone.name }}">
