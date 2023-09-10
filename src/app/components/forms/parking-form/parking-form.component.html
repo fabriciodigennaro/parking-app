@@ -1,56 +1,106 @@
 <p class="title-step">Start parking</p>
 <div class="card">
-
   <div class="step-indicator">
     <div class="step">
-      <div class="circle active"><img src="../../../../assets/img/car.svg" alt="car-incon"></div>
+      <div class="circle active">
+        <img src="../../../../assets/img/car.svg" alt="car-incon" />
+      </div>
       <div class="line"></div>
-      <div class="circle"><img src="../../../../assets/img/wallet.svg" alt="wallet-incon"></div>
+      <div class="circle">
+        <img src="../../../../assets/img/wallet.svg" alt="wallet-incon" />
+      </div>
     </div>
-  </div>   
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-field">
-        <label for="email">Email:  
-          <p class="error-text" *ngIf="isInvalidField('email')"> is required.</p>
-        </label>
-        <input type="email" id="email" formControlName="email" [ngClass]="{error: isInvalidField('email')}"/>
-      </div>
-      <div class="form-field">
-        <label for="plate">Plate:  
-          <p class="error-text" *ngIf="isInvalidField('plate')"> is required.</p>
-        </label>
-        <input type="text" id="plate" formControlName="plate" [ngClass]="{error: isInvalidField('plate')}"/>
-      </div>
-  
-      <div class="form-field">
-        <label for="city">City:
-          <p class="error-text" *ngIf="isInvalidField('city')"> is required.</p>
-        </label>
-        <select id="city" formControlName="city" [ngClass]="{error: isInvalidField('city')}" (change)="onCitySelected()">
-          <option value="">Select a city</option>
-          <option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</option>
-        </select>
-      </div>
-  
-      <div class="form-field">
-        <label for="parkZone">Park Zone:
-          <p class="error-text" *ngIf="isInvalidField('parkZone')"> is required.</p>
-        </label>
-        <select id="parkZone" formControlName="parkZone" [ngClass]="{error: isInvalidField('parkZone')}">
-          <option value="">{{ placeholderParkingZones }}</option>
-          <option *ngFor="let zone of parkingZones" value="{{zone.name}}">{{zone.name}}</option>
-        </select>
-      </div>
-  
-      <div class="form-field">
-        <label for="duration">Duration:
-          <p class="error-text" *ngIf="isInvalidField('duration')"> is required.</p>
-        </label>
-        <input type="range" min="10" max="480" id="duration" formControlName="duration" [ngClass]="{error: isInvalidField('duration')}"/>
-         <h2>Exipres at: {{finishingTime}}</h2>
-      </div>
-      <app-button [disabled]="!form.valid" class="confirm-btn">Confirm</app-button>
-    </form>
   </div>
-  
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="email"
+        >Email:
+        <p class="error-text" *ngIf="isInvalidField('email')">
+          please insert a valid email.
+        </p>
+      </label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        [ngClass]="{ error: isInvalidField('email') }"
+      />
+    </div>
+    <div class="form-field">
+      <label for="plate"
+        >Plate:
+        <p class="error-text" *ngIf="isInvalidField('plate')">is required.</p>
+      </label>
+      <input
+        type="text"
+        id="plate"
+        formControlName="plate"
+        [ngClass]="{ error: isInvalidField('plate') }"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="city"
+        >City:
+        <p class="error-text" *ngIf="isInvalidField('city')">is required.</p>
+      </label>
+      <select
+        id="city"
+        formControlName="city"
+        [ngClass]="{ error: isInvalidField('city') }"
+        (change)="onCitySelected()"
+      >
+        <option value="">Select a city</option>
+        <option *ngFor="let city of cities" value="{{ city.name }}">
+          {{ city.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="parkZone"
+        >Park Zone:
+        <p class="error-text" *ngIf="isInvalidField('parkZone')">
+          is required.
+        </p>
+      </label>
+      <select
+        id="parkZone"
+        formControlName="parkZone"
+        [ngClass]="{ error: isInvalidField('parkZone') }"
+      >
+        <option value="">{{ placeholderParkingZones }}</option>
+        <option *ngFor="let zone of parkingZones" value="{{ zone.name }}">
+          {{ zone.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="duration"
+        >Duration:
+        <p class="error-text" *ngIf="isInvalidField('duration')">
+          is required.
+        </p>
+      </label>
+      <input
+        type="range"
+        min="10"
+        max="480"
+        id="duration"
+        formControlName="duration"
+        [ngClass]="{ error: isInvalidField('duration') }"
+      />
+      <div class="time-box">
+        <!-- <div class="time-added"> -->
+        <p class="time-added">You added: {{timeInHours}}</p>
+        <!-- </div> -->
+        <p class="time-expires">Your parking exipres at: {{ finishingTime }}</p>
+      </div>
+    </div>
+    <app-button [disabled]="!form.valid" class="confirm-btn"
+      >Confirm</app-button
+    >
+  </form>
+</div>

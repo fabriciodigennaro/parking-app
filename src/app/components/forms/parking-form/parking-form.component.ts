@@ -5,6 +5,7 @@ import { ParkingZonesService } from 'src/app/services/zones.service';
 import { City } from 'src/app/share/interfaces/city.inteface';
 import { Zone } from 'src/app/share/interfaces/parking-zones.interface';
 import { millisecondsToFormattedString } from 'src/app/share/utils/date-formater';
+import { formatMinutes } from 'src/app/share/utils/time-formater';
 
 @Component({
   selector: 'app-parking-form',
@@ -17,6 +18,7 @@ export class ParkingFormComponent implements OnInit {
   parkingZones: Zone[] = [];
   placeholderParkingZones: string = 'First select a city';
   finishingTime: string = millisecondsToFormattedString(new Date().getTime());
+  timeInHours: string = '10 minutes';
 
   constructor(
     private _fb: FormBuilder,
@@ -60,6 +62,7 @@ export class ParkingFormComponent implements OnInit {
 
   subscribeToDurationChanges() {
     this.form.get('duration')?.valueChanges.subscribe((newValue: number) => {
+      this.timeInHours = formatMinutes(newValue); 
       const minutesToMiliSeconds = newValue * 60 * 1000;
       const finishingTimeInMiliSeconds = new Date().getTime() + minutesToMiliSeconds
       this.finishingTime = millisecondsToFormattedString(finishingTimeInMiliSeconds);

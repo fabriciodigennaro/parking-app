@@ -5,15 +5,12 @@ input {
     outline-width: 0;
     outline: none;
   }
-
-  
-
-  }
+}
 .card {
   border: 1px solid var(--grey-light);
   border-radius: 10px;
   padding: 30px;
-  width: 50%; 
+  width: 50%;
   margin: 20px auto;
 
   // start step indicator styles
@@ -27,14 +24,14 @@ input {
     img {
       width: 20px;
       padding-top: 5px;
+    }
   }
-  }
-  
+
   .step {
     display: flex;
     align-items: center;
   }
-  
+
   .circle {
     width: 30px;
     height: 30px;
@@ -46,69 +43,89 @@ input {
     background-color: var(--grey-light);
     margin: 0;
   }
-  
+
   .line {
     width: 20vw;
     height: 3px;
     background-color: var(--grey-light);
   }
-  
+
   .active {
     background-color: var(--secondary);
   }
   // end step indicator styles
 
   .form-field {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
 
-      .error {
-        border: 1px solid var(--error) !important;
+    .error {
+      border: 1px solid var(--error) !important;
     }
 
-      label {
-          display: block;
-          margin-bottom: 10px;
-          font-weight: bold;
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
 
-          .error-text {
-            display: inline;
-            font-weight: 400;
-            font-size: 15px;
-            color: var(--error);
-          }
+      .error-text {
+        display: inline;
+        font-weight: 400;
+        font-size: 15px;
+        color: var(--error);
       }
+    }
 
-      input[type='text'],
-      input[type='email'],
-      select {
-          width: 100%;
-          height: 40px;
-          padding: 10px;
-          border: 1px solid var(--grey-light);
-          border-radius: 5px;
-          font-size: 16px;
-          margin-top: 5px;
-      }
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      border: 1px solid var(--grey-light);
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
 
-      input[type='range'] {
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: var(--primary);
+      height: 5px;
+      border-radius: 5px;
+      width: 100%;
+      &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        appearance: none;
-        background-color: var(--primary);
-        height: 5px;
-        border-radius: 5px;
-        width: 100%;
-        &::-webkit-slider-thumb {
-          -webkit-appearance: none;
-        
-          background: var(--primary-light);
-          cursor: pointer;
-          width: 25px;
-          height: 25px;
-          border-radius: 50%;
-        }
-          }
+
+        background: var(--primary-light);
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
       }
+    }
+
+    .time-box {
+      justify-content: center;
+      margin-top: 10px;
+      display: grid;
+    }
+    .time-added {
+      border-radius: 30px;
+      background-color: var(--secondary);
+      display: flex;
+      justify-content: center;
+      width: 290px;
+      height: 50px;
+      align-items: center;
+    }
+
+    .time-expires {
+      font-size: 13px;
+      margin: 0 auto;
+    }
   }
+}
 
 .title-step {
   border-radius: 0 0 5px 5px;
@@ -124,7 +141,22 @@ input {
 }
 
 @media (max-width: 768px) {
- .card {
-      width: 80%;
+  .card {
+    width: 80%;
+
+    .time-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+
+      .time-added {
+        width: 240px;
+      }
+
+      .time-expires {
+        font-size: 12px;
+      }
+    }
   }
 }
