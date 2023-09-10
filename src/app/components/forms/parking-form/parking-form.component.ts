@@ -4,7 +4,7 @@ import { CitiesService } from 'src/app/services/cities.service';
 import { ParkingZonesService } from 'src/app/services/parking-zones.service';
 import { City } from 'src/app/share/interfaces/city.inteface';
 import { ParkingZone } from 'src/app/share/interfaces/parking-zones.interface';
-import { millisecondsToFormattedString } from 'src/app/share/utils/date-formater';
+import { millisecondsToFormattedExpirationText } from 'src/app/share/utils/date-formater';
 import { formatMinutes } from 'src/app/share/utils/time-formater';
 
 @Component({
@@ -17,7 +17,7 @@ export class ParkingFormComponent implements OnInit {
   cities: City[] = [];
   parkingZones: ParkingZone[] = [];
   placeholderParkingZones: string = 'First select a city';
-  finishingTime: string = millisecondsToFormattedString(new Date().getTime());
+  finishingTime: string = millisecondsToFormattedExpirationText(new Date().getTime());
   timeInHours: string = '10 minutes';
 
   constructor(
@@ -66,7 +66,7 @@ export class ParkingFormComponent implements OnInit {
       this.timeInHours = formatMinutes(newValue); 
       const minutesToMiliSeconds = newValue * 60 * 1000;
       const finishingTimeInMiliSeconds = new Date().getTime() + minutesToMiliSeconds
-      this.finishingTime = millisecondsToFormattedString(finishingTimeInMiliSeconds);
+      this.finishingTime = millisecondsToFormattedExpirationText(finishingTimeInMiliSeconds);
     });
   }
 
