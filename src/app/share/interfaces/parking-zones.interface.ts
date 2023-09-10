@@ -1,8 +1,8 @@
 export interface ParkingZonesResponse {
-    parking_zones: Zone[],
+    parking_zones: ParkingZone[],
 }
 
-export interface Zone {
+export interface ParkingZone {
 id: number,
 name: string,
 }

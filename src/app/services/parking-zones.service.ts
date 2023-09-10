@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 
 import { ParkingZonesResponse } from "../share/interfaces/parking-zones.interface";
 import { HttpService } from "./http.service";
-import { HttpParams } from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root',

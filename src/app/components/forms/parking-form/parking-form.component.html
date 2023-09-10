@@ -52,7 +52,7 @@
         (change)="onCitySelected()"
       >
         <option value="">Select a city</option>
-        <option *ngFor="let city of cities" value="{{ city.name }}">
+        <option *ngFor="let city of cities" value="{{ city.id }}">
           {{ city.name }}
         </option>
       </select>
@@ -93,10 +93,8 @@
         [ngClass]="{ error: isInvalidField('duration') }"
       />
       <div class="time-box">
-        <!-- <div class="time-added"> -->
         <p class="time-added">You added: {{timeInHours}}</p>
-        <!-- </div> -->
-        <p class="time-expires">Your parking exipres at: {{ finishingTime }}</p>
+        <p class="time-expires">Your parking exipres on {{ finishingTime }}</p>
       </div>
     </div>
     <app-button [disabled]="!form.valid" class="confirm-btn"
