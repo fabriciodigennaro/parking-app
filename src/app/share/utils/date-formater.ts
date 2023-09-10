@@ -1,4 +1,4 @@
- export function millisecondsToFormattedString(milliseconds: number) {
+ export function millisecondsToFormattedExpirationText(milliseconds: number) {
   const dateObj = new Date(milliseconds);
   
   // Get the date components
