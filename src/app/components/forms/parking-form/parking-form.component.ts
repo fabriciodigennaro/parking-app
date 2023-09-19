@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CitiesService } from 'src/app/services/cities.service';
 import { ParkingZonesService } from 'src/app/services/parking-zones.service';
@@ -6,19 +6,21 @@ import { City } from 'src/app/share/interfaces/city.inteface';
 import { ParkingZone } from 'src/app/share/interfaces/parking-zones.interface';
 import { millisecondsToFormattedExpirationText } from 'src/app/share/utils/date-formater';
 import { formatMinutes } from 'src/app/share/utils/time-formater';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-parking-form',
   templateUrl: './parking-form.component.html',
   styleUrls: ['./parking-form.component.scss']
 })
-export class ParkingFormComponent implements OnInit {
+export class ParkingFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   cities: City[] = [];
   parkingZones: ParkingZone[] = [];
   placeholderParkingZones: string = 'First select a city';
   finishingTime: string = millisecondsToFormattedExpirationText(new Date().getTime());
   timeInHours: string = '10 minutes';
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private _fb: FormBuilder,
@@ -40,10 +42,15 @@ export class ParkingFormComponent implements OnInit {
     this.subscribeToDurationChanges();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
   getCities(): void {
-    this._citiesService.getCities().subscribe((response) => {
+    const citySubscription = this._citiesService.getCities().subscribe((response) => {
       this.cities = response.cities;
     });
+    this.subscriptions.push(citySubscription);
   }
 
   onCitySelected() {
@@ -51,12 +58,13 @@ export class ParkingFormComponent implements OnInit {
     if (cityId != '') {
       this.placeholderParkingZones = 'Select a Parking Zone';
       this.form.get('parkingZone')?.enable();
-      this.getParkingZonesByCityId(cityId);
+      const parkingZoneSubscription = this.getParkingZonesByCityId(cityId);
+      this.subscriptions.push(parkingZoneSubscription);
     }
   }
 
-  getParkingZonesByCityId(cityId: number): void {
-    this._parkingZonesService.getZonesByCityId(cityId).subscribe((response) => {
+  getParkingZonesByCityId(cityId: number): Subscription {
+    return this._parkingZonesService.getZonesByCityId(cityId).subscribe((response) => {
       this.parkingZones = response.parking_zones;
     });
   }
