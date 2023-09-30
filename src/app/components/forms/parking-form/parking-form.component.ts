@@ -4,9 +4,13 @@ import { CitiesService } from 'src/app/services/cities.service';
 import { ParkingZonesService } from 'src/app/services/parking-zones.service';
 import { City } from 'src/app/share/interfaces/city.inteface';
 import { ParkingZone } from 'src/app/share/interfaces/parking-zones.interface';
-import { millisecondsToFormattedExpirationText } from 'src/app/share/utils/date-formater';
+import { millisecondsToFormattedExpirationText, millisecondsToIsoString } from 'src/app/share/utils/date-formater';
 import { formatMinutes } from 'src/app/share/utils/time-formater';
 import { Subscription } from 'rxjs';
+import { ParkingService } from 'src/app/services/parking.service';
+import { ParkingRequest } from 'src/app/share/interfaces/parking.interface';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parking-form',
@@ -18,14 +22,17 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
   cities: City[] = [];
   parkingZones: ParkingZone[] = [];
   placeholderParkingZones: string = 'First select a city';
-  finishingTime: string = millisecondsToFormattedExpirationText(new Date().getTime());
+  finishingTime: string = millisecondsToFormattedExpirationText(new Date().getTime() + 10 * 60 * 1000);
+  finishingTimeInMiliSeconds: number = (new Date().getTime() + 10 * 60 * 1000);
   timeInHours: string = '10 minutes';
   private subscriptions: Subscription[] = [];
 
   constructor(
     private _fb: FormBuilder,
     private _citiesService: CitiesService,
-    private _parkingZonesService: ParkingZonesService
+    private _parkingZonesService: ParkingZonesService,
+    private _parkingService: ParkingService,
+    private _router: Router,
   ) {
     this.form = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,7 +46,7 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.form.get('parkingZone')?.disable();
     this.getCities();
-    this.subscribeToDurationChanges();
+    this.subscribeToDurationChanges(); 
   }
 
   ngOnDestroy(): void {
@@ -65,7 +72,10 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
 
   getParkingZonesByCityId(cityId: number): Subscription {
     return this._parkingZonesService.getZonesByCityId(cityId).subscribe((response) => {
-      this.parkingZones = response.parking_zones;
+      this.parkingZones = response.parking_zones.map((zone) => ({
+        id: zone.id, 
+        name: zone.name, 
+      }));
     });
   }
 
@@ -73,8 +83,8 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
     this.form.get('duration')?.valueChanges.subscribe((newValue: number) => {
       this.timeInHours = formatMinutes(newValue); 
       const minutesToMiliSeconds = newValue * 60 * 1000;
-      const finishingTimeInMiliSeconds = new Date().getTime() + minutesToMiliSeconds
-      this.finishingTime = millisecondsToFormattedExpirationText(finishingTimeInMiliSeconds);
+      this.finishingTimeInMiliSeconds = new Date().getTime() + minutesToMiliSeconds
+      this.finishingTime = millisecondsToFormattedExpirationText(this.finishingTimeInMiliSeconds);
     });
   }
 
@@ -85,7 +95,32 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.form.valid) {
-      // Call service to create a parking
+     const params = this.parkingRequestParams
+     const createParkingSubscription = this._parkingService.createParking(params).subscribe(
+      {
+        next: (response) => {
+          this._router.navigate(['/success'])
+        }, 
+        error: () =>{
+          console.log('ocurrió un error al hacer la petición')
+        }
+      }
+     );
+     this.subscriptions.push(createParkingSubscription)
     }
+  }
+
+  get parkingRequestParams(): ParkingRequest {
+    const parkingZoneName = this.form.get('parkingZone')?.value;
+    const selectedZone = this.parkingZones.find((zone) => zone.name === parkingZoneName);
+
+    const formParams = {
+      email: this.form.get('email')?.value,
+      plate: this.form.get('plate')?.value,
+      city_id: this.form.get('city')?.value,
+      parking_zone_id: selectedZone?.id!,
+      expiration: millisecondsToIsoString(this.finishingTimeInMiliSeconds),
+    };
+    return formParams;
   }
 }
