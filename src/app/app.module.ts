@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ParkingFormComponent } from './components/forms/parking-form/parking-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SuccessMessageComponent } from './components/messages/success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     ButtonComponent,
-    ParkingFormComponent
+    ParkingFormComponent,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,

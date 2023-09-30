@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ParkingService } from 'src/app/services/parking.service';
 import { ParkingRequest } from 'src/app/share/interfaces/parking.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parking-form',
@@ -30,7 +31,8 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
     private _fb: FormBuilder,
     private _citiesService: CitiesService,
     private _parkingZonesService: ParkingZonesService,
-    private _parkingService: ParkingService
+    private _parkingService: ParkingService,
+    private _router: Router,
   ) {
     this.form = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -97,13 +99,10 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
      const createParkingSubscription = this._parkingService.createParking(params).subscribe(
       {
         next: (response) => {
-          console.log('la petición fue exitosa con status: ')
+          this._router.navigate(['/success'])
         }, 
         error: () =>{
           console.log('ocurrió un error al hacer la petición')
-          if (Error instanceof HttpErrorResponse) {
-            console.log('Código de estado de error:', Error.status);
-          }
         }
       }
      );
