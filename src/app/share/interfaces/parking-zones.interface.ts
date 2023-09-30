@@ -3,6 +3,6 @@ export interface ParkingZonesResponse {
 }
 
 export interface ParkingZone {
-id: number,
+id: string,
 name: string,
 }

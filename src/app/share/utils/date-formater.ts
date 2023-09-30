@@ -12,3 +12,7 @@
 
   return `${month}-${day} at ${hours}:${minutes}hs`;
 }
+
+export function millisecondsToIsoString(miliseconds: number) {
+  return new Date(miliseconds).toISOString();
+}
