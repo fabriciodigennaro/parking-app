@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="! showSuccessMessage" class="card">
   <div>
     <h1 class="parking-form-title">Start your parking!</h1>
   </div> 
@@ -103,4 +103,14 @@
       >Confirm</app-button
     >
   </form>
+</div>
+
+
+<div *ngIf="showSuccessMessage" class="container">
+  <section class="card-success">
+    <div class="card-content">
+      <img src="../../../../assets/img/green-check.svg" alt="check icon">
+      <h1>Parking Confirmed!</h1>
+    </div>
+  </section>
 </div>

@@ -9,8 +9,6 @@ import { formatMinutes } from 'src/app/share/utils/time-formater';
 import { Subscription } from 'rxjs';
 import { ParkingService } from 'src/app/services/parking.service';
 import { ParkingRequest } from 'src/app/share/interfaces/parking.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parking-form',
@@ -25,6 +23,7 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
   finishingTime: string = millisecondsToFormattedExpirationText(new Date().getTime() + 10 * 60 * 1000);
   finishingTimeInMiliSeconds: number = (new Date().getTime() + 10 * 60 * 1000);
   timeInHours: string = '10 minutes';
+  showSuccessMessage: boolean = false;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -32,7 +31,6 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
     private _citiesService: CitiesService,
     private _parkingZonesService: ParkingZonesService,
     private _parkingService: ParkingService,
-    private _router: Router,
   ) {
     this.form = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -99,7 +97,7 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
      const createParkingSubscription = this._parkingService.createParking(params).subscribe(
       {
         next: (response) => {
-          this._router.navigate(['/success'])
+         this.showSuccessMessage = true;
         }, 
         error: () =>{
           console.log('ocurrió un error al hacer la petición')
