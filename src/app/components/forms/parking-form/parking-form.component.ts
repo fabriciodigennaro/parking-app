@@ -115,7 +115,6 @@ export class ParkingFormComponent implements OnInit, OnDestroy {
     const formParams = {
       email: this.form.get('email')?.value,
       plate: this.form.get('plate')?.value,
-      city_id: this.form.get('city')?.value,
       parking_zone_id: selectedZone?.id!,
       expiration: millisecondsToIsoString(this.finishingTimeInMiliSeconds),
     };
