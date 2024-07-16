@@ -1,11 +1,14 @@
 <header class="navbar">
   <div class="logo" (click)="redirectHome()">Parking App</div>
-  <div *ngIf="isMenuOpen" class="close-btn" (click)="toggleMenu()">X</div>
-  <div *ngIf="!isMenuOpen" class="menu-btn" (click)="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+  @if(isMenuOpen) {
+    <div class="close-btn" (click)="toggleMenu()">X</div>
+  } @else {
+    <div class="menu-btn" (click)="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  }
   <nav class="nav-items" [ngClass]="{ 'show-menu': isMenuOpen }">
     <ul>
       <li><a (click)="redirectHome()">Home</a></li>
